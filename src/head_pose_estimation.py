@@ -70,8 +70,7 @@ class HeadPoseEstimationModel:
         return finalOutput
         
 
-    def check_model(self):
-        ''
+
 
     def preprocess_input(self, image):
         '''

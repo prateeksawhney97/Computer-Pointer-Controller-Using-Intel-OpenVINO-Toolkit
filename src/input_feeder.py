@@ -45,3 +45,4 @@ class InputFeeder:
         '''
         if not self.input_type=='image':
             self.cap.release()
+

@@ -73,8 +73,7 @@ class GazeEstimationModel:
 
         return new_mouse_coord, gaze_vector
 
-    def check_model(self):
-        ''
+
 
     def preprocess_input(self, left_eye, right_eye):
         '''
