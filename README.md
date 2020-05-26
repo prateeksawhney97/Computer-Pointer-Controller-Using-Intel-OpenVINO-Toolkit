@@ -3,27 +3,25 @@
 ## Introduction
 Computer Pointer Controller app is used to controll the movement of mouse pointer by the direction of eyes and also estimated pose of head. This app takes video as input and then app estimates eye-direction and head-pose and based on that estimation it move the mouse pointers.
 
-## Demo video
-[![Demo video](https://img.youtube.com/vi/qR9rQQ4wiMQ/0.jpg)](https://www.youtube.com/watch?v=qR9rQQ4wiMQ)
 
-## Project Set Up and Installation
+## Project Set Up and Installation:
 
-### Setup
+### Setup:
 
 #### Prerequisites
   - You need to install openvino successfully. <br/>
   See this [guide](https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html) for installing openvino.
 
-#### Step 1
-Clone the repository:- https://github.com/denilDG/Computer-Pointer-Controller
+#### Step 1:
+Clone this repository. 
 
-#### Step 2
+#### Step 2:
 Initialize the openVINO environment:-
 ```
 source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5
 ```
 
-#### Step 3
+#### Step 3:
 
 Download the following models by using openVINO model downloader:-
 
@@ -44,7 +42,7 @@ python /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py
 python /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "gaze-estimation-adas-0002"
 ```
 
-## Demo
+## Demonstration
 
 Open a new terminal and run the following commands:-
 
@@ -80,18 +78,18 @@ python main.py -f <Path of xml file of face detection model> \
 -d HETERO:FPGA,CPU
 ```
 
-## Documentation
+## Documentation:
 
-### Documentatiob of used models
+### Documentation of used models:
 
 1. [Face Detection Model](https://docs.openvinotoolkit.org/latest/_models_intel_face_detection_adas_binary_0001_description_face_detection_adas_binary_0001.html)
 2. [Facial Landmarks Detection Model](https://docs.openvinotoolkit.org/latest/_models_intel_landmarks_regression_retail_0009_description_landmarks_regression_retail_0009.html)
 3. [Head Pose Estimation Model](https://docs.openvinotoolkit.org/latest/_models_intel_head_pose_estimation_adas_0001_description_head_pose_estimation_adas_0001.html)
 4. [Gaze Estimation Model](https://docs.openvinotoolkit.org/latest/_models_intel_gaze_estimation_adas_0002_description_gaze_estimation_adas_0002.html)
 
-### Command Line Arguments for Running the app
+### Command Line Arguments for Running the application:
 
-Following are commanda line arguments that can use for while running the main.py file ` python main.py `:-
+Following are command line arguments that can be used while running the main.py file ` python main.py `:-
 
   1. -h                : Get the information about all the command line arguments
   2. -fl    (required) : Specify the path of Face Detection model's xml file
@@ -103,9 +101,7 @@ Following are commanda line arguments that can use for while running the main.py
   9. -prob  (optional) : Specify the probability threshold for face detection model to detect the face accurately from video frame.
   8. -flags (optional) : Specify the flags from fd, fld, hp, ge if you want to visualize the output of corresponding models                           of each frame (write flags with space seperation. Ex:- -flags fd fld hp).
 
-### Directory Structure of the project
-
-![directory_structure_img](media/directory_structure.png)
+### Directory Structure of the project:
 
 - src folder contains all the source files:-
   1. face_detection.py 
@@ -127,45 +123,46 @@ Following are commanda line arguments that can use for while running the main.py
      - Contains MouseController class which take x, y coordinates value, speed, precisions and according these values it            moves the mouse pointer by using pyautogui library.
   7. main.py
      - Users need to run main.py file for running the app.
- 
-- media folder contains demo video which user can use for testing the app.
+     
+- intel folder contains all the models 
+- bin folder contains demo video which user can use for testing the app.
 
 
 
-## Benchmarks
-Benchmark results of the model.
+## Benchmarks:
+Benchmark results of the model are depicted below.
 
 ### FP32
 
 **Inference Time** <br/> 
-![inference_time_fp32_image](media/inference_time_fp32.png "Inference Time")
+![inference_time_fp32_image](bin/inference_time_fp32.png "Inference Time")
 
 **Frames per Second** <br/> 
-![fps_fp32_image](media/fps_fp32.png "Frames per Second")
+![fps_fp32_image](bin/fps_fp32.png "Frames per Second")
 
 **Model Loading Time** <br/> 
-![model_loading_time_fp32_image](media/model_loading_time_fp32.png "Model Loading Time")
+![model_loading_time_fp32_image](bin/model_loading_time_fp32.png "Model Loading Time")
 
 ### FP16
 
 **Inference Time** <br/> 
-![inference_time_fp16_image](media/inference_time_fp16.png "Inference Time")
+![inference_time_fp16_image](bin/inference_time_fp16.png "Inference Time")
 
 **Frames per Second** <br/> 
-![fps_fp16_image](media/fps_fp16.png "Frames per Second")
+![fps_fp16_image](bin/fps_fp16.png "Frames per Second")
 
 **Model Loading Time** <br/> 
-![model_loading_time_fp16_image](media/model_loading_time_fp16.png "Model Loading Time")
+![model_loading_time_fp16_image](bin/model_loading_time_fp16.png "Model Loading Time")
 
 ### INT8
 **Inference Time** <br/> 
-![inference_time_int8_image](media/inference_time_int8.png "Inference Time")
+![inference_time_int8_image](bin/inference_time_int8.png "Inference Time")
 
 **Frames per Second** <br/> 
-![fps_int8_image](media/fps_int8.png "Frames per Second")
+![fps_int8_image](bin/fps_int8.png "Frames per Second")
 
 **Model Loading Time** <br/> 
-![model_loading_time_int8_image](media/model_loading_time_int8.png "Model Loading Time")
+![model_loading_time_int8_image](bin/model_loading_time_int8.png "Model Loading Time")
 
 ## Results
 I have run the model in 5 diffrent hardware:-
@@ -187,12 +184,5 @@ GPU proccesed more frames per second compared to any other hardware and speciall
 
 - So when you use lower precision model then you can get lower accuracy than higher precision model.
 
-## Stand Out Suggestions
-
-### Edge Cases
-
-1. If for some reason model can not detect the face then it prints unable to detect the face and read another frame till it    detects the face or user closes the window.
-
-2. If there are more than one face detected in the frame then model takes the first detected face for control the mouse  pointer.
 
 
