@@ -81,6 +81,8 @@ class FaceDetectionModel:
         cropped_face = image[coords[1]:coords[3], coords[0]:coords[2]]
         return cropped_face, coords
 
+    def check_model(self):
+        ''
 
     def preprocess_input(self, image):
         '''

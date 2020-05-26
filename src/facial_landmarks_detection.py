@@ -90,6 +90,8 @@ class FacialLandmarksDetectionModel:
         eye_coords = [[le_xmin,le_ymin,le_xmax,le_ymax], [re_xmin,re_ymin,re_xmax,re_ymax]]
         return left_eye, right_eye, eye_coords
         
+    def check_model(self):
+        ''
 
     def preprocess_input(self, image):
         '''
